@@ -104,7 +104,7 @@ function LoginPage({ onLogin }) {
   );
 }
 
-// Main CRUDApp Component (Modified to use localStorage)
+// Main CRUDApp Component
 function CRUDApp({ user, onLogout }) {
   const [tasks, setTasks] = useState([]);
   const [form, setForm] = useState({ title: '', description: '', status: 'pending', priority: 'medium', completed: false, _id: null });
