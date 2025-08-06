@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Save, X, LogOut, User, Lock, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 // Login Component
 function LoginPage({ onLogin }) {
@@ -15,7 +15,7 @@ function LoginPage({ onLogin }) {
     setError('');
 
     try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
+      const response = await fetch(`${REACT_APP_API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)
@@ -138,7 +138,7 @@ function CRUDApp({ user, onLogout }) {
         ...Object.fromEntries(Object.entries(filters).filter(([_, v]) => v))
       });
       
-      const response = await fetch(`${API_BASE_URL}/tasks?${queryParams}`, {
+      const response = await fetch(`${REACT_APP_API_URL}/tasks?${queryParams}`, {
         headers: getAuthHeaders()
       });
       
@@ -174,7 +174,7 @@ function CRUDApp({ user, onLogout }) {
         })
       };
 
-      const url = form._id ? `${API_BASE_URL}/tasks/${form._id}` : `${API_BASE_URL}/tasks`;
+      const url = form._id ? `${REACT_APP_API_URL}/tasks/${form._id}` : `${REACT_APP_API_URL}/tasks`;
       const response = await fetch(url, options);
       
       if (!response.ok) throw new Error('Failed to save task');
@@ -207,7 +207,7 @@ function CRUDApp({ user, onLogout }) {
     
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
+      const response = await fetch(`${REACT_APP_API_URL}/tasks/${id}`, {
         method: 'DELETE',
         headers: getAuthHeaders()
       });
